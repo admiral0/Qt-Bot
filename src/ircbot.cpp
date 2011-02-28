@@ -220,6 +220,8 @@ column3<<"wagtail" ;
     connect(s,SIGNAL(connected()),this,SLOT(ircconnected()));
     b=NULL;
     runner=NULL;
+
+    iface= new MprisReader("org.mpris.amarok","/Player",QDBusConnection::sessionBus());
 }
 
 IrcBot::~IrcBot()
@@ -273,7 +275,6 @@ void IrcBot::parseMessage(QString origin, QString msg)
     runner->start();
     timer->start(10000);
   }else if(msg.startsWith("@listening")){
-    MprisReader *iface= new MprisReader("org.mpris.amarok","/Player",QDBusConnection::sessionBus());
     if(!iface)
       return;
     DBusStatus s=iface->GetStatus();

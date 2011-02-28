@@ -56,6 +56,7 @@ private:
   boost::mt19937 gen;
   ScriptRunner* runner;
   QTimer *timer;
+  MprisReader *iface;
 };
 
 #include <qdbusargument.h>
